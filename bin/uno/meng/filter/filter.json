@@ -1,0 +1,11 @@
+{
+  "hosts": [
+    "www.kuangmeng.org","\\w+cnki.net\\w+"
+  ],
+  "users": [
+	"219.217.227.135","219.217.226.15"
+  ],
+  "fishs": [
+    "hit.edu.cn"
+  ]
+}
