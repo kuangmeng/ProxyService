@@ -11,6 +11,7 @@ public class Receive {
     public Receive(){
         receive = new byte[100000];
     }
+    //从服务器输出流构造HTTP文件
     public void CreateHTTP(InputStream inputStream) {
         int totalBytesRead = 0;
         byte[] buffer = new byte[65535];
@@ -27,7 +28,6 @@ public class Receive {
         }
         receiveSize = totalBytesRead;
     }
-
     public byte[] getReceive() {
         return Arrays.copyOf(receive, receiveSize);
     }

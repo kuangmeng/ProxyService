@@ -1,5 +1,4 @@
 package uno.meng.filter;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.InetAddress;
@@ -20,6 +19,7 @@ public class Filter {
 	public Filter(){
 		InitData(Filter.ShieldList,Filter.FishList,Filter.UserList);
 	}
+	//加载过滤数据
 	public void InitData(List<String> shieldList, List<String> fishList, List<String> UserList){
 		File file = new File(path);
         Scanner scanner = null;
@@ -56,7 +56,7 @@ public class Filter {
 			e.printStackTrace();
 		}
 	}
-	
+	//判断URL是否过滤
 	public static boolean NonUrlShield(String url){
         for (int i = 0; i < ShieldList.size(); i++){
             if(url.contains(ShieldList.get(i)) || url.matches( ShieldList.get(i))){
@@ -65,14 +65,13 @@ public class Filter {
         }
         return true;
     }
-
     //钓鱼响应报文首部
     public static String getFirst(){
         String first = new String();
         first = "Location: "+getFinalUrl()+"\r\n\r\n";
         return first;
     }
-    
+    //判断是否钓鱼
     public static boolean NonFish(String url){
         for(int i = 0; i < FishList.size(); i++){
             if(url.contains(FishList.get(i)) || url.matches(FishList.get(i))){
@@ -81,6 +80,7 @@ public class Filter {
         }
         return true;
     }
+    //判断是否用户过滤
     public static boolean NonUserShield(String ip){
     	try {
 			InetAddress address=InetAddress.getLocalHost();
@@ -94,7 +94,6 @@ public class Filter {
 		}
         return true;
     }
-    
 	public static String getFinalUrl() {
 		return finalUrl;
 	}

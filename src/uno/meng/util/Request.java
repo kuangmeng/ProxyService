@@ -13,6 +13,7 @@ public class Request {
         this.url = url;
         this.receive = receive;
     }
+    //通过请求获取回应
     public Receive CreateReceive() throws IOException {
         Socket ServiceSocket = null;
 		try {

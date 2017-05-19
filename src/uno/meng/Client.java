@@ -19,7 +19,6 @@ public class Client {
     private final int port;
     private ServerSocket serverSocket;
     static Timer timer;
-
     public Client(int port) {
         this.port = port;
         try {

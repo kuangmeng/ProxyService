@@ -20,10 +20,12 @@ public class Cache{
     public Cache(Receive receive) {
         Cache.receive = receive;
     }
+    //判断是否缓存过
     public static boolean isCached(Request request) {
         String filePath = hashStr(request);
         return new File(filePath).exists();
     }
+    //判断是否最新
     public static boolean isNew(Request request){
     			String filePath = hashStr(request);
     			String time = new String();
@@ -44,7 +46,7 @@ public class Cache{
                              OutputOfService.flush();
                              receive.CreateHTTP(ServiceSocket.getInputStream());
                             if(new String(receive.receive).contains("HTTP/1.1 304 Not Modified")){
-                            			return false;
+                            			return true;
                             }
     						}
     					  }
@@ -62,8 +64,9 @@ public class Cache{
     					e.printStackTrace();
     				}
     			}
-    			return true;
+    			return false;
     }
+    //hash函数
     public static String hashStr(Request request){ 
     		String key = request.url.getUrl();
 	    int arraySize = 65535;            
@@ -74,7 +77,7 @@ public class Cache{
 	    }  
 	    return "cache/"+String.valueOf(hashCode)+".txt";  
 	}  
-
+//从缓存中获取回应
     public static Receive get(Request request) {
         String filePath = hashStr(request);
         File file = new File(filePath);
@@ -84,7 +87,7 @@ public class Cache{
         }
         return receive;
     }
-
+//将新的请求回应加入缓存
     public static void add(Request request, Receive receive) {
         String filePath = hashStr(request);
         try {

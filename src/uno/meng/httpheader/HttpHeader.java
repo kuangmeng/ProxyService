@@ -8,7 +8,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class HttpHeader {
     private String host;
     private int port;
@@ -60,7 +59,7 @@ public class HttpHeader {
         sb.append("\r\n");
         return sb.toString();
     }
-
+//构造HTTP头
     private void CreateHeader(String header) {
         if (header.startsWith("GET") || header.startsWith("POST")) {
             CreateScheme(header);
@@ -74,6 +73,7 @@ public class HttpHeader {
             headers.add("Connection: close");
         }
     }
+    
     private void CreateHost(String header) {
         String[] components = header.split(" ");
         String hostName = components[1];
@@ -85,7 +85,7 @@ public class HttpHeader {
             host = hostName;
         }
     }
-
+//从输入流构造请求
     public void CreateRequest(InputStream inputStream) {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         try {

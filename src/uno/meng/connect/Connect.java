@@ -28,7 +28,6 @@ public class Connect extends Thread {
 		} catch (IOException e1) {
 		}
         InetAddress addr = client.getInetAddress();
-        //System.out.println("收到来自" + addr.getHostName()+ "\t" + addr.getHostAddress()+"的连接！");
         if(Filter.NonUserShield(addr.getHostAddress())){
             //判断是否过滤该url
             if (Filter.NonUrlShield(url.getUrl()) && url.getUrl().length() < 100){
